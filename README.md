@@ -7,7 +7,7 @@ MERN stack.
 
 ## Team Members
 
-[__John Malhinha__] Team Lead
+[__John Malhinha__] Github Czar
 
 [__Jason Chartier__] Backend Engineer
 
