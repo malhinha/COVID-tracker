@@ -13,8 +13,6 @@ router.get('/seed', (req, res) => {
     providerLocation: "123 Main St"
   })
 })
-
-
 //CREATE
   router.post('/', async(req, res) => {
     try{
@@ -46,8 +44,15 @@ router.get('/seed', (req, res) => {
       }
     })
 //UPDATE
-
-
+  router.put('/:id', async (req, res) => {
+    try{
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      res.status(200).json(updatedUser)
+    }catch(error){
+      console.error(error);
+      res.status(400).json({ message: error.message })
+    }
+  })
 //DELETE
 router.delete('/:id', async (req, res) => {
   try{
