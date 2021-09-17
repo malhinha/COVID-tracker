@@ -16,6 +16,7 @@ const router = require('express').Router();
 router.post('/', async(req, res) => {
   try{
     const createdSymptom = await Symptom.create(req.body)
+    const updatedUser = await User.findByIdAndUpdate(req.body.user, {$addToSet: { symptoms: createdSymptom._id }}, {new: true});
     res.status(200).json(createdSymptom)
   }catch(error){
     console.error(error)
