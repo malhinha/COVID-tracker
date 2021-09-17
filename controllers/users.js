@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const Symptom = require('../models/symptom.js');
 const router = require('express').Router();
 
 
