@@ -1,4 +1,5 @@
 const Symptom = require('../models/symptom.js');
+const User = require('../models/user.js');
 const router = require('express').Router();
 
 //SEED ROUTE
