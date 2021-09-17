@@ -12,6 +12,7 @@ const db = mongoose.connection;
 
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
 });
 db.on('open', () => {
