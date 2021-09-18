@@ -4,13 +4,20 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const path = require('path');
+<<<<<<< HEAD
 const userController = require('./controllers/users');
+=======
+const userController = require('./controllers/users.js');
+const symptomController = require('./controllers/symptoms.js');
+const authController = require('./controllers/auth.js');
+>>>>>>> 97e135898439019aeec389cb0c384aa3e8dad7a8
 
 const MONGODB_URI = process.env.MONGODB_URI
 const db = mongoose.connection;
 
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
 });
 db.on('open', () => {
@@ -24,6 +31,8 @@ if (process.env.NODE_ENV !== 'development'){
 
 /* Controller Goes Here Remove the tes*/
 app.use('/api/users', userController);
+app.use('/api/symptoms', symptomController);
+app.use('/api/auth', authController);
 /* Controller Ends here */
 //LISTENER
 

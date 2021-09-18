@@ -1,38 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function YesNo(props) {
-	const [checked, setChecked] = useState(null);
-
-	// const handleChange = e => {
-	// 	setChecked({ ...checked, [e.target.id]: e.target.value });
-	// };
-
 	return (
 		<>
 			<p>{props.text}</p>
-			<div>
-				<div>
-					<input
-						type="radio"
-						name="Yes"
-						id="Yes"
-						value="true"
-						checked={checked === true}
-						onChange={() => setChecked(true)}
-					/>
-					<label htmlFor="yes">Yes</label>
-				</div>
-				<div>
-					<input
-						type="radio"
-						id="No"
-						name="No"
-						value="false"
-						checked={checked === false}
-						onChange={() => setChecked(false)}
-					/>
-					<label htmlFor="No">No</label>
-				</div>
+			<div onChange={props.onChange}>
+				<input
+					type="radio"
+					id={`${props.name}-yes`}
+					name={props.name}
+					value={true}
+				/>
+				<label htmlFor={`${props.name}-yes`}>Yes</label>
+
+				<input
+					type="radio"
+					id={`${props.name}-no`}
+					name={props.name}
+					value={false}
+				/>
+				<label htmlFor={`${props.name}-no`}>No</label>
 			</div>
 		</>
 	);
