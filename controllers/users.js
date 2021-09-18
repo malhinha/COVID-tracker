@@ -2,6 +2,8 @@ const User = require('../models/user.js');
 const Symptom = require('../models/symptom.js');
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 
 //Seed route <---example for testing
@@ -76,14 +78,23 @@ router.get('/seed', (req, res) => {
               newUser.password = hash;
               newUser.save()
                 .then(user => {
-                  res.json({
-                    user: {
-                      id: user.id,
-                      firstName: user.firstName,
-                      lastName: user.lastName,
-                      email: user.email
+                  jwt.sign(
+                    { id: user.id },/*payload*/
+                    'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
+                    { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                    (err, token) => {
+                      if(err) throw err;
+                      res.json({
+                        token,
+                        user: {
+                          id: user.id,
+                          firstName: user.firstName,
+                          lastName: user.lastName,
+                          email: user.email
+                        }
+                      });
                     }
-                  })
+                  )
                 })
             })
           })
