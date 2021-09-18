@@ -17,7 +17,7 @@ const RegisterInformation = props => {
 		console.log(doctor);
 	};
 
-	const handleSubmit = async e => {
+	const sendForm = async e => {
 		console.log('submitting');
 
 		e.preventDefault();
@@ -34,11 +34,12 @@ const RegisterInformation = props => {
 				},
 				body: JSON.stringify(allData)
 			});
-			const data = await response.json();
-			setToken(data.token);
-			setLoggedInUser(data.allData.email);
-			window.localStorage.setItem('token', data.token);
-			window.localStorage.setItem('loggedInUser', data.allData.email);
+			const data = await responsepersonal.json();
+			console.log(data);
+			//setToken(data.token);
+			//setLoggedInUser(data.email);
+			//window.localStorage.setItem('token', data.token);
+			//window.localStorage.setItem('loggedInUser', data.email);
 		} catch (error) {
 			console.error(error);
 		}
@@ -49,7 +50,7 @@ const RegisterInformation = props => {
 			<h3>Register your account</h3>
 
 			<h3>Personal Information</h3>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={sendForm}>
 				<div class="input-container">
 					<i class="fa fa-wpforms icon"></i>
 					<input
@@ -205,7 +206,8 @@ const RegisterInformation = props => {
 						onChange={handleChangeDoctor}
 					/>
 				</div>
-				<button type="button">Submit Registration</button>
+
+				<input type="submit" value="Submit" />
 			</form>
 		</div>
 	);

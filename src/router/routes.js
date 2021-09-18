@@ -12,6 +12,11 @@ const routes = [
 		path: '/contact'
 	},
 	{
+		Component: Login,
+		key: 'Login',
+		path: '/login'
+	},
+	{
 		Component: Home,
 		key: 'Home',
 		path: '/home'

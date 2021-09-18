@@ -11,7 +11,7 @@ const SignIn = props => {
 	const handleLogin = async e => {
 		e.preventDefault();
 		try {
-			const response = await fetch('/register', {
+			const response = await fetch('/api/auth/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
