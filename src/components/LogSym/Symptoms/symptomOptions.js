@@ -1,20 +1,19 @@
 const symptoms = [
-	{ symptom: 'New Loss of Smell or Tsate', id: 'sense' },
+	{ symptom: 'New Loss of Smell or Tsate', name: 'smellOrTaste' },
 	{
 		symptom: 'New or Worsended Muscle Aches, Body Aches, or Fatigue',
-		id: 'aches'
+		name: 'achesOrFatigue'
 	},
-	{ symptom: 'Fever, Feeling Feverish or Shaking Chills', id: 'temp' },
-	{ symptom: 'New or Worsened Headache', id: 'Headache' },
-	{ symptom: 'New or Worsened Cough', id: 'cough' },
+	{ symptom: 'Fever, Feeling Feverish or Shaking Chills', name: 'fever' },
+	{ symptom: 'New or Worsened Headache', name: 'headache' },
+	{ symptom: 'New or Worsened Cough', name: 'cough' },
 	{
-		symptom: 'New or Worsened Shortness of breath or Difficulty Breathing',
-		id: 'breath'
+		symptom: 'New or Worsened Shortness of breath or Difficulty breathing',
+		name: 'breathing'
 	},
-	{ symptom: 'New or Worsened Sore Throat', id: 'throat' },
-	{ symptom: 'New or Worsened Congestion or Runny Nose', id: 'nose' },
-	{ symptom: 'Diarrhea', id: 'Diarrhea' },
-	{ symptom: 'Vomitting', id: 'vomit' }
+	{ symptom: 'New or Worsened Sore Throat', name: 'soreThroat' },
+	{ symptom: 'New or Worsened Congestion or Runny Nose', name: 'nose' },
+	{ symptom: 'Diarrhea or Vomitting', name: 'diarrheaOrVomiting' }
 ];
 
 export default symptoms;

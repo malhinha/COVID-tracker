@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function CheckBoxForm(props) {
-	const [checked, setChecked] = useState(false);
-
 	return (
 		<>
 			<input
 				type="checkbox"
-				id={props.id}
-				checked={checked}
-				onChange={e => setChecked(e.target.checked)}
+				id={props.name}
+				onChange={props.onChange}
+				name={props.name}
 			/>
-			<label htmlFor={props.id} value={props.label}>
-				{props.label}
-			</label>
+			<label htmlFor={props.name}>{props.label}</label>
 		</>
 	);
 }
