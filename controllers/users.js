@@ -53,7 +53,7 @@ router.get('/seed', (req, res) => {
       const { firstName, lastName, email, password, dateOfBirth, zipCode } = req.body;
 
       //validation
-      if(!firstName || !lastName || !email || !password){
+      if( !email || !password){ /*To-Do add back required fields*/
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
