@@ -8,6 +8,27 @@ const SignIn = props => {
 		setSignin({ ...signin, [e.target.id]: e.target.value });
 	};
 
+	const handleLogin = async e => {
+		e.preventDefault();
+		try {
+			const response = await fetch('/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(signin)
+			});
+			const data = await response.json();
+			setToken(data.token);
+			setLoggedInUser(data.email);
+			window.localStorage.setItem('token', data.token);
+			window.localStorage.setItem('loggedInUser', data.email);
+		} catch (error) {
+			console.error(error);
+		}
+		history.push('/contact');
+	};
+
 	return (
 		<div>
 			<h3>Sign in to your account</h3>
@@ -16,11 +37,11 @@ const SignIn = props => {
 					<i className="fa fa-user icon"></i>
 					<input
 						className="input-field"
-						id="username"
+						id="email"
 						type="text"
-						placeholder="Username"
-						name="username"
-						value={signin.username}
+						placeholder="User Email"
+						name="email"
+						value={signin.email}
 						onChange={handleChange}
 					/>
 				</div>
@@ -38,7 +59,10 @@ const SignIn = props => {
 					/>
 				</div>
 			</form>
-			<button type="button">Login</button> <br />
+			<button type="button" onClick={handleLogin}>
+				Login
+			</button>{' '}
+			<br />
 			<Link to="/register">
 				<button type="button">Register</button>
 			</Link>

@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const path = require('path');
+const userController = require('./controllers/users');
 
 const MONGODB_URI = process.env.MONGODB_URI
 const db = mongoose.connection;
@@ -22,12 +23,7 @@ if (process.env.NODE_ENV !== 'development'){
 }
 
 /* Controller Goes Here Remove the tes*/
-app.get('/test', (req, res)=>{
-	res.status(200).json({
-		website: 'My Website',
-		info: 'Not that much'
-	})
-})
+app.use('/api/users', userController);
 /* Controller Ends here */
 //LISTENER
 
