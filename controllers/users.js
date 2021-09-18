@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 //Seed route <---example for testing
 router.get('/seed', (req, res) => {
   User.create({
-    username: "superman",
     email: "superman@gmail.com",
     password: "passwordtest",
     zipCode: "05101",
