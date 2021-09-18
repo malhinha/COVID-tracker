@@ -1,7 +1,7 @@
 import React from 'react';
 import App from '../pages/App';
-import About from '../pages/About';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Contact from '../pages/Contact';
 
@@ -25,11 +25,6 @@ const routes = [
 		Component: Register,
 		key: 'Register',
 		path: '/register'
-	},
-	{
-		Component: About,
-		key: 'About',
-		path: '/about'
 	},
 	{
 		Component: App,

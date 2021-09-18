@@ -51,10 +51,10 @@ const RegisterInformation = props => {
 
 			<h3>Personal Information</h3>
 			<form onSubmit={sendForm}>
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="firstName"
 						type="text"
 						placeholder="First Name"
@@ -63,10 +63,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="lastName"
 						type="text"
 						placeholder="Last Name"
@@ -75,10 +75,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="dateOfBirth"
 						type="date"
 						placeholder="Date of Birth"
@@ -87,10 +87,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="zipCode"
 						type="number"
 						placeholder="Zip Code"
@@ -98,10 +98,10 @@ const RegisterInformation = props => {
 						onChange={handleChangePersonal}
 					/>
 				</div>
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="email"
 						type="text"
 						placeholder="Email"
@@ -109,10 +109,10 @@ const RegisterInformation = props => {
 						onChange={handleChangePersonal}
 					/>
 				</div>
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="password"
 						type="text"
 						placeholder="Password"
@@ -124,10 +124,10 @@ const RegisterInformation = props => {
 
 			<h3>Medical Information</h3>
 			<form>
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="firstName"
 						type="text"
 						placeholder="First Name"
@@ -136,10 +136,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="lastName"
 						type="text"
 						placeholder="Last Name"
@@ -148,10 +148,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="doctorphonenumber"
 						type="number"
 						placeholder="Phone Number"
@@ -160,10 +160,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="facilityphonenumber"
 						type="number"
 						placeholder="Facility Phone Number"
@@ -171,10 +171,10 @@ const RegisterInformation = props => {
 						onChange={handleChangeDoctor}
 					/>
 				</div>
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="facilityName"
 						type="text"
 						placeholder="Facility Name"
@@ -183,10 +183,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="facilityLocation"
 						type="text"
 						placeholder="Facility Location"
@@ -195,10 +195,10 @@ const RegisterInformation = props => {
 					/>
 				</div>
 
-				<div class="input-container">
-					<i class="fa fa-wpforms icon"></i>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
 					<input
-						class="input-field"
+						className="input-field"
 						id="facilityNumber"
 						type="text"
 						placeholder="Facility Phone Number"
