@@ -4,6 +4,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth.js');
 
 
 //Seed route <---example for testing
@@ -47,57 +48,44 @@ router.get('/seed', (req, res) => {
         res.status(400).json({message: error.message})
       }
     });
-    //@route POST api/users/register
-    //@desc Register a new user
-    router.post('/register', (req, res) => {
-      const { firstName, lastName, email, password, dateOfBirth, zipCode } = req.body;
+    //@route POST api/auth
+    //@desc Auth user
+    router.post('/login', (req, res) => {
+      const { email, password } = req.body;
 
       //validation
-      if( !email || !password){ /*To-Do add back required fields*/
+      if( !email || !password ){
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
       //check for existing users
       User.findOne({ email })
         .then(user => {
-          if(user) return res.status(400).json({ message: 'User already exists'});
+          if(!user) return res.status(400).json({ message: 'User Does Not Exist'});
 
-          const newUser = new User ({
-            firstName,
-            lastName,
-            email,
-            password,
-            dateOfBirth,
-            zipCode
-          });
+          //Validate Password
+          bcrypt.compare(password, user.password)
+            .then(isMatch => {
+              if(!isMatch) return res.status(400).json({ message: 'Invalid Credentials'});
 
-          //Create salt & hash
-          bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if(err) throw err;
-              newUser.password = hash;
-              newUser.save()
-                .then(user => {
-                  jwt.sign(
-                    { id: user.id },/*payload*/
-                    'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
-                    { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
-                    (err, token) => {
-                      if(err) throw err;
-                      res.json({
-                        token,
-                        user: {
-                          id: user.id,
-                          firstName: user.firstName,
-                          lastName: user.lastName,
-                          email: user.email
-                        }
-                      });
+              jwt.sign(
+                { id: user.id },/*payload*/
+                'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
+                { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                (err, token) => {
+                  if(err) throw err;
+                  res.json({
+                    token,
+                    user: {
+                      id: user.id,
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      email: user.email
                     }
-                  )
-                })
+                  });
+                }
+              )
             })
-          })
         })
     });
 //UPDATE
@@ -119,7 +107,16 @@ router.delete('/:id', async (req, res) => {
     console.error(error);
     res.status(400).json({ message: error.message})
   }
-})
+});
+
+//@route GET api/auth
+//@desc Auth user
+//@access private
+router.get('/user', auth, (req, res) => {
+  User.findById(req.user.id)
+    .select('-password')
+    .then(user => res.json(user));
+});
 
 
 module.exports = router;

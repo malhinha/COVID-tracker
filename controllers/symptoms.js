@@ -1,6 +1,7 @@
 const Symptom = require('../models/symptom.js');
 const User = require('../models/user.js');
 const router = require('express').Router();
+const auth = require('../middleware/auth.js');
 
 //SEED ROUTE
   router.get('/seed2', (req, res) => {
@@ -13,7 +14,10 @@ const router = require('express').Router();
   })
 
 //CREATE
-router.post('/', async(req, res) => {
+//@route POST api/symptoms
+//@desc create a symptom
+//@access private
+router.post('/', auth, async(req, res) => {
   try{
     const createdSymptom = await Symptom.create(req.body)
     const updatedUser = await User.findByIdAndUpdate(req.body.user, {$addToSet: { symptoms: createdSymptom._id }}, {new: true});
