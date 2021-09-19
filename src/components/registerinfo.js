@@ -1,48 +1,50 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Link,
+	useHistory
+} from 'react-router-dom';
 
 const RegisterInformation = props => {
 	const [personal, setPersonal] = useState({});
 	const [doctor, setDoctor] = useState({});
-	const [token, setToken] = useState(''); //user has been authenticated
-	const [loggedInUser, setLoggedInUser] = useState('');
+	const history = useHistory();
 
 	const handleChangePersonal = e => {
 		setPersonal({ ...personal, [e.target.id]: e.target.value });
-		console.log(personal);
 	};
 
 	const handleChangeDoctor = e => {
 		setDoctor({ ...doctor, [e.target.id]: e.target.value });
-		console.log(doctor);
 	};
 
-	const sendForm = async e => {
-		console.log('submitting');
-
+	const handleSubmit = async e => {
 		e.preventDefault();
+		console.log('entered submit');
 		const allData = {
 			...personal,
 			doctor: { ...doctor }
 		};
-		console.log(allData);
 		try {
-			const responsepersonal = await fetch('/api/users/register', {
+			const response = await fetch('/api/users/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(allData)
 			});
-			const data = await responsepersonal.json();
-			console.log(data);
-			//setToken(data.token);
-			//setLoggedInUser(data.email);
-			//window.localStorage.setItem('token', data.token);
-			//window.localStorage.setItem('loggedInUser', data.email);
+
+			const data = await response.json();
+			console.log(data.token);
+			console.log(data.user.email);
+			// window.localStorage.setItem('token', data.token);
+			// window.localStorage.setItem('loggedInUser', data.user.email);
 		} catch (error) {
 			console.error(error);
 		}
+		history.push('/login');
 	};
 
 	return (
@@ -50,7 +52,7 @@ const RegisterInformation = props => {
 			<h3>Register your account</h3>
 
 			<h3>Personal Information</h3>
-			<form onSubmit={sendForm}>
+			<form onSubmit={handleSubmit}>
 				<div className="input-container">
 					<i className="fa fa-wpforms icon"></i>
 					<input
@@ -206,9 +208,8 @@ const RegisterInformation = props => {
 						onChange={handleChangeDoctor}
 					/>
 				</div>
-
-				<input type="submit" value="Submit" />
 			</form>
+			<button onClick={handleSubmit}>Submit</button>
 		</div>
 	);
 };

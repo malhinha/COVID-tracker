@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Link,
+	useHistory
+} from 'react-router-dom';
 
 const SignIn = props => {
 	const [signin, setSignin] = useState([]);
+	const history = useHistory();
 
 	const handleChange = e => {
 		setSignin({ ...signin, [e.target.id]: e.target.value });
@@ -19,14 +26,14 @@ const SignIn = props => {
 				body: JSON.stringify(signin)
 			});
 			const data = await response.json();
-			setToken(data.token);
-			setLoggedInUser(data.email);
+			console.log(data.token);
+			console.log(data.user.email);
 			window.localStorage.setItem('token', data.token);
-			window.localStorage.setItem('loggedInUser', data.email);
+			window.localStorage.setItem('loggedInUser', data.user.email);
 		} catch (error) {
 			console.error(error);
 		}
-		history.push('/contact');
+		history.push('/home');
 	};
 
 	return (
