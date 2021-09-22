@@ -41,7 +41,7 @@ const jwt = require('jsonwebtoken');
       const { firstName, lastName, email, password, dateOfBirth, doctor } = req.body;
 
       //validation
-      if( !firstName || !lastName || !email || !password || !dateOfBirth ){ 
+      if( !firstName || !lastName || !email || !password || !dateOfBirth ){
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
@@ -68,7 +68,7 @@ const jwt = require('jsonwebtoken');
                   jwt.sign(
                     { id: user.id },/*payload*/
                     'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
-                    { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                    { expiresIn: 3600 },
                     (err, token) => {
                       if(err) throw err;
                       res.json({
