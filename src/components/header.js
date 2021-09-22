@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Link,
+	useHistory
+} from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 const Header = props => {
-	const [loggedInUser, setLoggedInUser] = useState('');
-	const [token, setToken] = useState('');
+	const history = useHistory();
 
 	useEffect(() => {
 		if (window.localStorage.getItem('token')) {
-			setToken(window.localStorage.getItem('token'));
-			setLoggedInUser(window.localStorage.getItem('loggedInUser'));
+			window.localStorage.getItem('loggedInUser');
 		}
-		console.log(token);
-		console.log(loggedInUser);
 	}, []);
 
 	const handleLogout = () => {
-		setToken('');
-		setLoggedInUser('');
 		localStorage.clear();
+		history.push('/login');
 	};
 
 	return (
 		<div>
-			{!token ? (
+			{!window.localStorage.getItem('token') ? (
 				<div>
 					<h3>CoviTRKR</h3>
 				</div>
 			) : (
 				<div>
 					<h3>CoviTRKR</h3>
-					<p>Hello {loggedInUser}</p>
-					<Link to={`/contact`}>
+					<p>Hello {window.localStorage.getItem('loggedInUser')}</p>
+					<Link to={`/login`}>
 						<button onClick={handleLogout}>logout</button>
 					</Link>
 				</div>
@@ -37,4 +40,4 @@ const Header = props => {
 		</div>
 	);
 };
-export default Header;
+export default withRouter(Header);
