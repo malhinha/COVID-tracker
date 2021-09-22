@@ -4,6 +4,7 @@ import Symptoms from '../components/LogSym/Symptoms/Symptoms';
 import YesNo from '../components/LogSym/YesNo';
 import CheckBoxForm from '../components/LogSym/Symptoms/CheckBoxForm';
 import LogHead from '../components/LogSym/LogHead';
+import Button from '../components/LogSym/Button';
 import symptomOptions from '../components/LogSym/Symptoms/symptomOptions';
 
 export default function LogSympmtoms(props) {
@@ -43,9 +44,25 @@ export default function LogSympmtoms(props) {
 		setState({ ...state, [e.target.name]: e.target.checked });
 	};
 
-	// const handleSubmit = () = {
-	// 	console.log("submatted")
-	// }
+	//Need to go over this, route and states. We're not going to clear any form, i dont believe anyway, because we redirect afterwards. In previous projects we've created a newState and a regualr state. but the regular state is the collection of all states and gets mapped  over to print them out. We don't present anything and just slam this into the symptoms model connected to the users.
+	const handleSubmit = e = {
+		e.preventDefault()
+		try{
+			const response = await fetch('/api/users/LogSymptoms',{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(state)
+			})
+			const data = await response.json()
+			setState([...state, data])
+		}catch(err){
+			console.error(err);
+		} finally {
+			window.location.assign('/home');
+		}
+	}
 
 	//Should i be doing something similar with the radio buttons? They were annoying due to value being different for them. I could do an array again to map over, the only thing that binds radio buttons is the name so as long as the name is fine it should be fine? Maybe that's easier? Unsure.
 	const symptomForm = symptomOptions.map((symptom, index) => {
@@ -62,7 +79,7 @@ export default function LogSympmtoms(props) {
 	});
 
 	return (
-		<form className="LogSympmtoms">
+		<form onSubmit={handleSubmit} className="LogSympmtoms">
 			{/*LogHead was just the header no real reason to have a componet tbh.*/}
 			<LogHead text={'Log Symptoms'} />
 			{/*This is maping over the symptoms array, to create the checkboxes and then you see the radio button compnet asking if it's severe*/}
@@ -114,6 +131,23 @@ export default function LogSympmtoms(props) {
 				onChange={handleChange}
 			/>
 			{/*I still need to create buttons for this page, but not sure how many, submit and contact docotr? not sure need to regroup*/}
+			{/*Buttons 1 to submit the data, another to to clear it. Second button is prob unneeded */}
+			<Button
+				id={"submit-btn"}
+				type={"submit"}
+				value={"Submit"}
+			/>
+			<Button
+				id={"reset-btn"}
+				type={"reset"}
+				value={"Clear"}
+			/>
+			//unsure of the logic behind this, prob onclick function to bring up doctor info i guess?
+			<Button
+				id={"contact"}
+				type={"button"}
+				value={"Contact Doctor"}
+			/>
 		</form>
 	);
 }
