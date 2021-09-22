@@ -41,7 +41,7 @@ const jwt = require('jsonwebtoken');
       const { firstName, lastName, email, password, dateOfBirth, doctor } = req.body;
 
       //validation
-      if( !firstName || !lastName || !email || !password || !dateOfBirth ){ /*To-Do add back required fields*/
+      if( !firstName || !lastName || !email || !password || !dateOfBirth ){ 
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
