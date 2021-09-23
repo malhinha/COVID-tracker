@@ -5,17 +5,6 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-
-//Seed route <---example for testing
-router.get('/seed', (req, res) => {
-  User.create({
-    email: "superman@gmail.com",
-    password: "passwordtest",
-    zipCode: "05101",
-    doctorName: "doctortest",
-    providerLocation: "123 Main St"
-  })
-})
 //CREATE
   router.post('/', async(req, res) => { /*change route name*/
     try{
@@ -49,10 +38,10 @@ router.get('/seed', (req, res) => {
     //@route POST api/users/register
     //@desc Register a new user
     router.post('/register', (req, res) => {
-      const { firstName, lastName, email, password, dateOfBirth, zipCode } = req.body;
+      const { firstName, lastName, email, password, dateOfBirth, doctor } = req.body;
 
       //validation
-      if( !email || !password){ /*To-Do add back required fields*/
+      if( !firstName || !lastName || !email || !password || !dateOfBirth ){
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
@@ -66,8 +55,7 @@ router.get('/seed', (req, res) => {
             lastName,
             email,
             password,
-            dateOfBirth,
-            zipCode
+            dateOfBirth
           });
 
           //Create salt & hash
@@ -80,7 +68,7 @@ router.get('/seed', (req, res) => {
                   jwt.sign(
                     { id: user.id },/*payload*/
                     'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
-                    { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                    { expiresIn: 3600 },
                     (err, token) => {
                       if(err) throw err;
                       res.json({
