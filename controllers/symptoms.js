@@ -3,16 +3,6 @@ const User = require('../models/user.js');
 const router = require('express').Router();
 const auth = require('../middleware/auth.js');
 
-//SEED ROUTE
-  router.get('/seed2', (req, res) => {
-    Symptom.create({
-      smellOrTaste: true,
-      headache: true,
-      fever: true,
-      exposedHow: "Came in contact with friend who tested positive."
-    })
-  })
-
 //CREATE
 //@route POST api/symptoms
 //@desc create a symptom
