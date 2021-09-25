@@ -10,7 +10,6 @@ import {
 const SignIn = props => {
 	const [signin, setSignin] = useState([]);
 	const history = useHistory();
-
 	const handleChange = e => {
 		setSignin({ ...signin, [e.target.id]: e.target.value });
 	};
@@ -26,8 +25,12 @@ const SignIn = props => {
 				body: JSON.stringify(signin)
 			});
 			const data = await response.json();
-			console.log(data.token);
-			console.log(data.user.email);
+			console.log(data);
+
+			if (data.message) {
+				alert(data.message);
+				return;
+			}
 			window.localStorage.setItem('token', data.token);
 			window.localStorage.setItem('loggedInUser', data.user.email);
 		} catch (error) {
@@ -39,7 +42,7 @@ const SignIn = props => {
 	return (
 		<div>
 			<h3>Sign in to your account</h3>
-			<form>
+			<form onSubmit={handleLogin}>
 				<div className="input-container">
 					<i className="fa fa-user icon"></i>
 					<input
@@ -50,6 +53,7 @@ const SignIn = props => {
 						name="email"
 						value={signin.email}
 						onChange={handleChange}
+						required
 					/>
 				</div>
 
@@ -63,12 +67,13 @@ const SignIn = props => {
 						name="password"
 						value={signin.password}
 						onChange={handleChange}
+						required
 					/>
 				</div>
+
+				<input type="submit" value="LOGIN" />
 			</form>
-			<button type="button" onClick={handleLogin}>
-				Login
-			</button>{' '}
+
 			<br />
 			<Link to="/register">
 				<button type="button">Register</button>

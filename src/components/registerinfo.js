@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -11,9 +11,14 @@ const RegisterInformation = props => {
 	const [personal, setPersonal] = useState({});
 	const [doctor, setDoctor] = useState({});
 	const history = useHistory();
+	const [confirmPassword, setConfirmPassword] = useState({});
 
 	const handleChangePersonal = e => {
 		setPersonal({ ...personal, [e.target.id]: e.target.value });
+	};
+
+	const handleChangeConfirmPassword = e => {
+		setConfirmPassword({ ...confirmPassword, [e.target.id]: e.target.value });
 	};
 
 	const handleChangeDoctor = e => {
@@ -23,6 +28,20 @@ const RegisterInformation = props => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		console.log('entered submit');
+		console.log(personal);
+		if (typeof personal.email === 'undefined') {
+			console.log('email is null');
+		} else {
+			console.log(personal.email);
+		}
+
+		if (personal.password !== confirmPassword.cpassword) {
+			alert('Passwords do not match');
+			setPersonal({ ...personal, password: '' });
+			setConfirmPassword({ cpassword: '' });
+			return;
+		}
+
 		const allData = {
 			...personal,
 			doctor: { ...doctor }
@@ -37,12 +56,10 @@ const RegisterInformation = props => {
 			});
 
 			const data = await response.json();
-			console.log(data.token);
-			console.log(data.user.email);
 			// window.localStorage.setItem('token', data.token);
 			// window.localStorage.setItem('loggedInUser', data.user.email);
 		} catch (error) {
-			console.error(error);
+			alert(error);
 		}
 		history.push('/login');
 	};
@@ -109,6 +126,7 @@ const RegisterInformation = props => {
 						placeholder="Email"
 						value={personal.email}
 						onChange={handleChangePersonal}
+						required
 					/>
 				</div>
 				<div className="input-container">
@@ -116,16 +134,28 @@ const RegisterInformation = props => {
 					<input
 						className="input-field"
 						id="password"
-						type="text"
+						type="password"
 						placeholder="Password"
 						value={personal.password}
 						onChange={handleChangePersonal}
+						required
 					/>
 				</div>
-			</form>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
+					<input
+						className="input-field"
+						id="cpassword"
+						type="password"
+						placeholder="Confirm Password"
+						value={confirmPassword.cpassword}
+						onChange={handleChangeConfirmPassword}
+						required
+					/>
+				</div>
 
-			<h3>Medical Information</h3>
-			<form>
+				<h3>Medical Information</h3>
+
 				<div className="input-container">
 					<i className="fa fa-wpforms icon"></i>
 					<input
@@ -208,8 +238,8 @@ const RegisterInformation = props => {
 						onChange={handleChangeDoctor}
 					/>
 				</div>
+				<input type="submit" value="SUBMIT" />
 			</form>
-			<button onClick={handleSubmit}>Submit</button>
 		</div>
 	);
 };
