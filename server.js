@@ -4,8 +4,10 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const path = require('path');
+
 const userController = require('./controllers/users.js');
 const symptomController = require('./controllers/symptoms.js');
+const authController = require('./controllers/auth.js');
 
 const MONGODB_URI = process.env.MONGODB_URI
 const db = mongoose.connection;
@@ -27,6 +29,7 @@ if (process.env.NODE_ENV !== 'development'){
 /* Controller Goes Here Remove the tes*/
 app.use('/api/users', userController);
 app.use('/api/symptoms', symptomController);
+app.use('/api/auth', authController);
 /* Controller Ends here */
 //LISTENER
 

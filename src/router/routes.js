@@ -1,7 +1,10 @@
 import React from 'react';
 import App from '../pages/App';
-import About from '../pages/About';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
+import LogSymptoms from '../pages/LogSymptoms';
+import Information from '../pages/Information';
+import Register from '../pages/Register';
 import Contact from '../pages/Contact';
 
 const routes = [
@@ -11,14 +14,29 @@ const routes = [
 		path: '/contact'
 	},
 	{
+		Component: LogSymptoms,
+		key: 'LogSymptoms',
+		path: '/logSymptoms'
+	},
+	{
+		Component: Information,
+		key: 'Information',
+		path: '/information'
+	},
+	{
+		Component: Login,
+		key: 'Login',
+		path: '/login'
+	},
+	{
 		Component: Home,
 		key: 'Home',
 		path: '/home'
 	},
 	{
-		Component: About,
-		key: 'About',
-		path: '/about'
+		Component: Register,
+		key: 'Register',
+		path: '/register'
 	},
 	{
 		Component: App,
