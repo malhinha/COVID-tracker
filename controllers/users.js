@@ -38,10 +38,10 @@ const jwt = require('jsonwebtoken');
     //@route POST api/users/register
     //@desc Register a new user
     router.post('/register', (req, res) => {
-      const { firstName, lastName, email, password, dateOfBirth, doctor } = req.body;
+      const { firstName, lastName, email, password, dateOfBirth, location, doctor } = req.body;
 
       //validation
-      if( !firstName || !lastName || !email || !password || !dateOfBirth ){
+      if( !firstName || !lastName || !email || !password || !dateOfBirth || !location ){
         return (res.status(400).json({ message: 'Please enter all required fields' }));
       }
 
@@ -55,7 +55,9 @@ const jwt = require('jsonwebtoken');
             lastName,
             email,
             password,
-            dateOfBirth
+            dateOfBirth,
+            doctor,
+            location
           });
 
           //Create salt & hash
