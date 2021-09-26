@@ -4,6 +4,7 @@ export default function StateDropDown(props) {
 	return (
 		<>
 			<select
+				id="state"
 				value={props.value}
 				placeholder="State"
 				autoFocus={true}

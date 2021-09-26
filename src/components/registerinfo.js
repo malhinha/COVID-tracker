@@ -203,7 +203,6 @@ const RegisterInformation = props => {
 						value={location.state}
 					/>
 				</div>
-
 				<div className="input-container">
 					<i className="fa fa-wpforms icon"></i>
 					<input
@@ -261,7 +260,7 @@ const RegisterInformation = props => {
 						className="input-field"
 						id="firstName"
 						type="text"
-						placeholder="First Name"
+						placeholder="Physician First Name"
 						value={doctor.firstName}
 						onChange={handleChangeDoctor}
 					/>
@@ -273,7 +272,7 @@ const RegisterInformation = props => {
 						className="input-field"
 						id="lastName"
 						type="text"
-						placeholder="Last Name"
+						placeholder="Physician Last Name"
 						value={doctor.lastName}
 						onChange={handleChangeDoctor}
 					/>
@@ -283,9 +282,9 @@ const RegisterInformation = props => {
 					<i className="fa fa-wpforms icon"></i>
 					<input
 						className="input-field"
-						id="doctorphonenumber"
+						id="doctorPhone"
 						type="number"
-						placeholder="Phone Number"
+						placeholder="Physician Phone Number"
 						value={doctor.doctorPhone}
 						onChange={handleChangeDoctor}
 					/>
@@ -295,9 +294,9 @@ const RegisterInformation = props => {
 					<i className="fa fa-wpforms icon"></i>
 					<input
 						className="input-field"
-						id="facilityphonenumber"
-						type="number"
-						placeholder="Facility Phone Number"
+						id="email"
+						type="text"
+						placeholder="Physician email"
 						value={doctor.email}
 						onChange={handleChangeDoctor}
 					/>
