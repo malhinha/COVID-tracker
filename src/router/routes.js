@@ -1,47 +1,23 @@
 import React from 'react';
-import App from '../pages/App';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
-import LogSymptoms from '../pages/LogSymptoms';
-import Information from '../pages/Information';
 import Register from '../pages/Register';
-import Contact from '../pages/Contact';
+import SignUp from '../pages/SignUp';
 
 const routes = [
 	{
-		Component: Contact,
-		key: 'Contact',
-		path: '/contact'
-	},
-	{
-		Component: LogSymptoms,
-		key: 'LogSymptoms',
-		path: '/logSymptoms'
-	},
-	{
-		Component: Information,
-		key: 'Information',
-		path: '/information'
-	},
-	{
-		Component: Login,
-		key: 'Login',
-		path: '/login'
+		Component: SignUp,
+		key: 'SignUp',
+		path: '/SignUp'
 	},
 	{
 		Component: Home,
 		key: 'Home',
-		path: '/home'
+		path: '/'
 	},
 	{
 		Component: Register,
 		key: 'Register',
 		path: '/register'
-	},
-	{
-		Component: App,
-		key: 'App',
-		path: '/'
 	}
 ];
 
