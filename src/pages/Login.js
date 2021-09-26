@@ -4,7 +4,7 @@ import Header from '../components/header';
 
 export default function Login(props) {
 	return (
-		<div className="ContactPage">
+		<div className="LogIn">
 			<Header />
 			<SignIn />
 		</div>
