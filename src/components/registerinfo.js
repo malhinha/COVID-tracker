@@ -136,7 +136,7 @@ const RegisterInformation = props => {
 		} catch (error) {
 			console.error(error);
 		}
-		history.push('/login');
+		history.push('/');
 	};
 
 	return (

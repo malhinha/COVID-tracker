@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 const SignIn = props => {
-	const [signin, setSignin] = useState([]);
+	const [signin, setSignin] = useState({});
 	const history = useHistory();
 	const handleChange = e => {
 		setSignin({ ...signin, [e.target.id]: e.target.value });
@@ -25,7 +25,6 @@ const SignIn = props => {
 				body: JSON.stringify(signin)
 			});
 			const data = await response.json();
-			console.log(data);
 
 			if (data.message) {
 				alert(data.message);
@@ -36,7 +35,7 @@ const SignIn = props => {
 		} catch (error) {
 			console.error(error);
 		}
-		history.push('/home');
+		history.push('/');
 	};
 
 	return (
