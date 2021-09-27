@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Exposure from '../components/LogSym/Exposure';
-import Symptoms from '../components/LogSym/Symptoms/Symptoms';
-import YesNo from '../components/LogSym/YesNo';
-import CheckBoxForm from '../components/LogSym/Symptoms/CheckBoxForm';
-import LogHead from '../components/LogSym/LogHead';
-import symptomOptions from '../components/LogSym/Symptoms/symptomOptions';
+import Exposure from './LogSym/Exposure';
+import Symptoms from './LogSym/Symptoms/Symptoms';
+import YesNo from './LogSym/YesNo';
+import CheckBoxForm from './LogSym/Symptoms/CheckBoxForm';
+import LogHead from './LogSym/LogHead';
+import Button from './LogSym/Button';
+import symptomOptions from './LogSym/Symptoms/symptomOptions';
 
 export default function LogSympmtoms(props) {
-	const [state, setState] = useState({
+	const [symptom, setSymptom] = useState({
 		smellOrTaste: false,
 		achesOrFatigue: false,
 		headache: false,
@@ -22,7 +23,8 @@ export default function LogSympmtoms(props) {
 		exposedHow: '',
 		healthProvider: false,
 		sentToDoc: false,
-		sharedPublicly: false
+		sharedPublicly: false,
+		user: `${props.userId}`
 	});
 
 	function toBool(value) {
@@ -36,16 +38,30 @@ export default function LogSympmtoms(props) {
 	}
 
 	const handleChange = e => {
-		setState({ ...state, [e.target.name]: toBool(e.target.value) });
+		setSymptom({ ...symptom, [e.target.name]: toBool(e.target.value) });
 	};
 
 	const handleCheckChange = e => {
-		setState({ ...state, [e.target.name]: e.target.checked });
+		setSymptom({ ...symptom, [e.target.name]: e.target.checked });
 	};
 
-	// const handleSubmit = () = {
-	// 	console.log("submatted")
-	// }
+	const handleSubmit = async e => {
+		e.preventDefault();
+		e.target.reset();
+		try {
+			const response = await fetch('/api/symptoms', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-auth-token': props.token
+				},
+				body: JSON.stringify(symptom)
+			});
+			const data = await response.json();
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	//Should i be doing something similar with the radio buttons? They were annoying due to value being different for them. I could do an array again to map over, the only thing that binds radio buttons is the name so as long as the name is fine it should be fine? Maybe that's easier? Unsure.
 	const symptomForm = symptomOptions.map((symptom, index) => {
@@ -62,7 +78,7 @@ export default function LogSympmtoms(props) {
 	});
 
 	return (
-		<form className="LogSympmtoms">
+		<form onSubmit={handleSubmit} className="LogSympmtoms">
 			{/*LogHead was just the header no real reason to have a componet tbh.*/}
 			<LogHead text={'Log Symptoms'} />
 			{/*This is maping over the symptoms array, to create the checkboxes and then you see the radio button compnet asking if it's severe*/}
@@ -83,7 +99,7 @@ export default function LogSympmtoms(props) {
 			"true". It is written like this, because setting it to check a boolean was
 			making hyst seeing if the value of exposure was true, and I didn't want to
 			add another state.*/}
-			{state.exposed && (
+			{symptom.exposed && (
 				<Exposure
 					text={'To the best of your knowldge, how were you exposed?'}
 					name={'exposedHow'}
@@ -114,6 +130,10 @@ export default function LogSympmtoms(props) {
 				onChange={handleChange}
 			/>
 			{/*I still need to create buttons for this page, but not sure how many, submit and contact docotr? not sure need to regroup*/}
+			{/*Buttons 1 to submit the data, another to to clear it. Second button is prob unneeded */}
+			<Button id={'submit-btn'} type={'submit'} value={'Submit'} />
+			<Button id={'reset-btn'} type={'reset'} value={'Clear'} />
+			<Button id={'contact'} type={'button'} value={'Contact Doctor'} />
 		</form>
 	);
 }
