@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function DataTable(props) {
+export default function CovidData(props) {
 	// declare state for COVID data object
 	const [results, setResults] = useState({});
 
