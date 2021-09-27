@@ -1,16 +1,18 @@
-import React from 'react';
-import NavBar from '../components/NavBar';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import App from '../pages/App';
+import Register from '../pages/Register';
 import routes from './routes';
+
 const AppRouter = () => {
 	return (
 		<Router>
-			<NavBar routes={routes} />
 			<Switch>
 				{routes.map(({ Component, key, path }) => (
 					<Route
 						key={key}
 						path={path}
+						exact
 						component={() => <Component page={key} />}
 					></Route>
 				))}

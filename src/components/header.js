@@ -19,7 +19,7 @@ const Header = props => {
 
 	const handleLogout = () => {
 		localStorage.clear();
-		history.push('/login');
+		history.push('/');
 	};
 
 	return (
@@ -32,9 +32,9 @@ const Header = props => {
 				<div>
 					<h3>CoviTRKR</h3>
 					<p>Hello {window.localStorage.getItem('loggedInUser')}</p>
-					<Link to={`/login`}>
+					<div>
 						<button onClick={handleLogout}>logout</button>
-					</Link>
+					</div>
 				</div>
 			)}
 		</div>
