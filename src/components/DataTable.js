@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import SignIn from '../components/signIn';
-import Header from '../components/header';
 
 export default function CovidData(props) {
 	// declare state for COVID data object
