@@ -1,5 +1,5 @@
 const symptoms = [
-	{ symptom: 'New Loss of Smell or Tsate', name: 'smellOrTaste' },
+	{ symptom: 'New Loss of Smell or Taste', name: 'smellOrTaste' },
 	{
 		symptom: 'New or Worsended Muscle Aches, Body Aches, or Fatigue',
 		name: 'achesOrFatigue'
@@ -12,7 +12,7 @@ const symptoms = [
 		name: 'breathing'
 	},
 	{ symptom: 'New or Worsened Sore Throat', name: 'soreThroat' },
-	{ symptom: 'New or Worsened Congestion or Runny Nose', name: 'nose' },
+	{ symptom: 'New or Worsened Congestion or Runny Nose', name: 'congestion' },
 	{ symptom: 'Diarrhea or Vomitting', name: 'diarrheaOrVomiting' }
 ];
 
