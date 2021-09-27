@@ -8,7 +8,7 @@ import Button from './LogSym/Button';
 import symptomOptions from './LogSym/Symptoms/symptomOptions';
 
 export default function LogSympmtoms(props) {
-	const [state, setState] = useState({
+	const [symptom, setSymptom] = useState({
 		smellOrTaste: false,
 		achesOrFatigue: false,
 		headache: false,
@@ -24,7 +24,7 @@ export default function LogSympmtoms(props) {
 		healthProvider: false,
 		sentToDoc: false,
 		sharedPublicly: false,
-		user: `${props.user}`
+		user: `${props.userId}`
 	});
 
 	function toBool(value) {
@@ -38,23 +38,24 @@ export default function LogSympmtoms(props) {
 	}
 
 	const handleChange = e => {
-		setState({ ...state, [e.target.name]: toBool(e.target.value) });
+		setSymptom({ ...symptom, [e.target.name]: toBool(e.target.value) });
 	};
 
 	const handleCheckChange = e => {
-		setState({ ...state, [e.target.name]: e.target.checked });
+		setSymptom({ ...symptom, [e.target.name]: e.target.checked });
 	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		e.target.reset();
 		try {
 			const response = await fetch('/api/symptoms', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'x-auth-token': user.token
+					'x-auth-token': props.token
 				},
-				body: JSON.stringify(state)
+				body: JSON.stringify(symptom)
 			});
 			const data = await response.json();
 		} catch (err) {
@@ -98,7 +99,7 @@ export default function LogSympmtoms(props) {
 			"true". It is written like this, because setting it to check a boolean was
 			making hyst seeing if the value of exposure was true, and I didn't want to
 			add another state.*/}
-			{state.exposed && (
+			{symptom.exposed && (
 				<Exposure
 					text={'To the best of your knowldge, how were you exposed?'}
 					name={'exposedHow'}
