@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '../pages/Home';
+import App from '../pages/App';
 import Register from '../pages/Register';
 import SignUp from '../pages/SignUp';
 
@@ -10,8 +10,8 @@ const routes = [
 		path: '/SignUp'
 	},
 	{
-		Component: Home,
-		key: 'Home',
+		Component: App,
+		key: 'App',
 		path: '/'
 	},
 	{

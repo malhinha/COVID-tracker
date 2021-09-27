@@ -6,12 +6,87 @@ import {
 	Link,
 	useHistory
 } from 'react-router-dom';
+import StateDropDown from '../components/statedropdown.js';
 
 const RegisterInformation = props => {
-	const [personal, setPersonal] = useState({});
-	const [doctor, setDoctor] = useState({});
+	const [personal, setPersonal] = useState({
+		email: '',
+		password: '',
+		firstName: '',
+		lastName: '',
+		dateOfBirth: ''
+	});
+	const [location, setLocation] = useState({
+		state: '',
+		city: '',
+		zipCode: ''
+	});
+	const [doctor, setDoctor] = useState({
+		firstName: '',
+		lastName: '',
+		doctorPhone: '',
+		email: '',
+		facilityName: '',
+		facilityLocation: '',
+		facilityNumber: ''
+	});
 	const history = useHistory();
-	const [confirmPassword, setConfirmPassword] = useState({});
+	const [confirmPassword, setConfirmPassword] = useState({
+		cpassword: ''
+	});
+	const statesArray = [
+		'AL',
+		'AK',
+		'AZ',
+		'AR',
+		'CA',
+		'CO',
+		'CT',
+		'DC',
+		'DE',
+		'FL',
+		'GA',
+		'HI',
+		'ID',
+		'IL',
+		'IN',
+		'IA',
+		'KS',
+		'KY',
+		'LA',
+		'ME',
+		'MD',
+		'MA',
+		'MI',
+		'MN',
+		'MS',
+		'MO',
+		'MT',
+		'NE',
+		'NV',
+		'NH',
+		'NJ',
+		'NM',
+		'NY',
+		'NC',
+		'ND',
+		'OH',
+		'OK',
+		'OR',
+		'PA',
+		'RI',
+		'SC',
+		'SD',
+		'TN',
+		'TX',
+		'UT',
+		'VT',
+		'VA',
+		'WA',
+		'WV',
+		'WI',
+		'WY'
+	];
 
 	const handleChangePersonal = e => {
 		setPersonal({ ...personal, [e.target.id]: e.target.value });
@@ -24,17 +99,12 @@ const RegisterInformation = props => {
 	const handleChangeDoctor = e => {
 		setDoctor({ ...doctor, [e.target.id]: e.target.value });
 	};
+	const handleChangeLocation = e => {
+		setLocation({ ...location, [e.target.id]: e.target.value });
+	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		console.log('entered submit');
-		console.log(personal);
-		if (typeof personal.email === 'undefined') {
-			console.log('email is null');
-		} else {
-			console.log(personal.email);
-		}
-
 		if (personal.password !== confirmPassword.cpassword) {
 			alert('Passwords do not match');
 			setPersonal({ ...personal, password: '' });
@@ -44,6 +114,7 @@ const RegisterInformation = props => {
 
 		const allData = {
 			...personal,
+			location: { ...location },
 			doctor: { ...doctor }
 		};
 		try {
@@ -56,12 +127,16 @@ const RegisterInformation = props => {
 			});
 
 			const data = await response.json();
+			if (data.message) {
+				alert(data.message);
+				return;
+			}
 			// window.localStorage.setItem('token', data.token);
 			// window.localStorage.setItem('loggedInUser', data.user.email);
 		} catch (error) {
-			alert(error);
+			console.error(error);
 		}
-		history.push('/login');
+		history.push('/');
 	};
 
 	return (
@@ -79,9 +154,9 @@ const RegisterInformation = props => {
 						placeholder="First Name"
 						value={personal.firstName}
 						onChange={handleChangePersonal}
+						required
 					/>
 				</div>
-
 				<div className="input-container">
 					<i className="fa fa-wpforms icon"></i>
 					<input
@@ -91,6 +166,7 @@ const RegisterInformation = props => {
 						placeholder="Last Name"
 						value={personal.lastName}
 						onChange={handleChangePersonal}
+						required
 					/>
 				</div>
 
@@ -103,9 +179,30 @@ const RegisterInformation = props => {
 						placeholder="Date of Birth"
 						value={personal.dateOfBirth}
 						onChange={handleChangePersonal}
+						required
+					/>
+				</div>
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
+					<input
+						className="input-field"
+						id="city"
+						type="text"
+						placeholder="City"
+						value={location.city}
+						onChange={handleChangeLocation}
+						required
 					/>
 				</div>
 
+				<div className="input-container">
+					<i className="fa fa-wpforms icon"></i>
+					<StateDropDown
+						onChange={handleChangeLocation}
+						array={statesArray}
+						value={location.state}
+					/>
+				</div>
 				<div className="input-container">
 					<i className="fa fa-wpforms icon"></i>
 					<input
@@ -114,7 +211,8 @@ const RegisterInformation = props => {
 						type="number"
 						placeholder="Zip Code"
 						value={personal.zipCode}
-						onChange={handleChangePersonal}
+						onChange={handleChangeLocation}
+						required
 					/>
 				</div>
 				<div className="input-container">
@@ -162,7 +260,7 @@ const RegisterInformation = props => {
 						className="input-field"
 						id="firstName"
 						type="text"
-						placeholder="First Name"
+						placeholder="Physician First Name"
 						value={doctor.firstName}
 						onChange={handleChangeDoctor}
 					/>
@@ -174,7 +272,7 @@ const RegisterInformation = props => {
 						className="input-field"
 						id="lastName"
 						type="text"
-						placeholder="Last Name"
+						placeholder="Physician Last Name"
 						value={doctor.lastName}
 						onChange={handleChangeDoctor}
 					/>
@@ -184,9 +282,9 @@ const RegisterInformation = props => {
 					<i className="fa fa-wpforms icon"></i>
 					<input
 						className="input-field"
-						id="doctorphonenumber"
+						id="doctorPhone"
 						type="number"
-						placeholder="Phone Number"
+						placeholder="Physician Phone Number"
 						value={doctor.doctorPhone}
 						onChange={handleChangeDoctor}
 					/>
@@ -196,9 +294,9 @@ const RegisterInformation = props => {
 					<i className="fa fa-wpforms icon"></i>
 					<input
 						className="input-field"
-						id="facilityphonenumber"
-						type="number"
-						placeholder="Facility Phone Number"
+						id="email"
+						type="text"
+						placeholder="Physician email"
 						value={doctor.email}
 						onChange={handleChangeDoctor}
 					/>
