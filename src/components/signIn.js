@@ -30,10 +30,12 @@ const SignIn = props => {
 				alert(data.message);
 				return;
 			}
-			console.log(data.user._id);
 			window.localStorage.setItem('token', data.token);
 			window.localStorage.setItem('loggedInUser', data.user.email);
 			window.localStorage.setItem('id', data.user.id);
+			window.localStorage.setItem('userState', data.user.state);
+
+			console.log(`local storage state: ${userState}`); //debugging
 		} catch (error) {
 			console.error(error);
 		}
