@@ -6,18 +6,6 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth.js');
 
-
-//Seed route <---example for testing
-router.get('/seed', (req, res) => {
-  User.create({
-    username: "superman",
-    email: "superman@gmail.com",
-    password: "passwordtest",
-    zipCode: "05101",
-    doctorName: "doctortest",
-    providerLocation: "123 Main St"
-  })
-})
 //CREATE
   router.post('/', async(req, res) => { /*change route name*/
     try{
