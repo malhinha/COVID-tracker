@@ -3,6 +3,7 @@ const Symptom = require('../models/symptom.js');
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const SECRET = process.env.SECRET;
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth.js');
 
@@ -58,7 +59,7 @@ const auth = require('../middleware/auth.js');
 
               jwt.sign(
                 { id: user.id },/*payload*/
-                'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
+                SECRET,/*To-Do Change secret and switch to env variable*/
                 { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
                 (err, token) => {
                   if(err) throw err;
