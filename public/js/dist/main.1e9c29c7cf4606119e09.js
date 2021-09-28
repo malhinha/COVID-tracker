@@ -94,7 +94,7 @@
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("class Test {\n  constructor() {\n    this.main = () => {\n      console.log('no other instructors got swagger like us');\n    };\n  }\n\n} // test\n\n\nconst test = new Test();\ntest.main();\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("class Test {\n  constructor() {\n    this.main = () => {\n      console.log('....hmmmm, go with that.....');\n    };\n  }\n\n} // test\n\n\nconst test = new Test();\ntest.main();\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 
