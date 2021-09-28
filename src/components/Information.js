@@ -57,32 +57,45 @@ export default function DataTable(props) {
 		'WY'
 	];
 
-	// declare state for COVID data object
-	const [results, setResults] = useState({});
+	// declare states for COVID API data
+	const [dataGeneral, setDataGeneral] = useState({});
+	const [dataRiskLevels, setDataRiskLevels] = useState({});
+	const [dataActuals, setDataActuals] = useState({});
+
 	// declare state for US state value
-	const [location, setLocation] = useState('NY');
+	const [location, setLocation] = useState(props.userState);
 
 	const handleChangeLocation = e => {
 		setLocation(e.target.value);
 		console.log(`handleChange-state: ${location}`); // debugging
-	};
 
-	useEffect(() => {
 		(async () => {
 			try {
-				console.log(`useEffect-state: ${location}`); // debugging
 				const response = await fetch(
 					`https://api.covidactnow.org/v2/state/${location}.json?apiKey=13dc5eb460e54e28b9d950d83a05290f`
 				);
 				const data = await response.json();
-				console.log(`data.fips: ${data.fips}`); // debugging
-				console.log(`data.riskLevels.overall: ${data.riskLevels.overall}`); // debugging
+				setDataGeneral(data);
+				setDataRiskLevels(data.riskLevels);
+				setDataActuals(data.actuals);
+			} catch (error) {
+				console.error(error);
+			}
+		})();
+	};
 
-				setResults(data);
-				console.log(`results.fips: ${results.fips}`); // debugging
-				console.log(
-					`results.riskLevels.overall: ${results.riskLevels.overall}`
-				); // debugging
+	useEffect(() => {
+		console.log(`useEffect-state: ${location}`); // debugging
+
+		(async () => {
+			try {
+				const response = await fetch(
+					`https://api.covidactnow.org/v2/state/${location}.json?apiKey=13dc5eb460e54e28b9d950d83a05290f`
+				);
+				const data = await response.json();
+				setDataGeneral(data);
+				setDataRiskLevels(data.riskLevels);
+				setDataActuals(data.actuals);
 			} catch (error) {
 				console.error(error);
 			}
@@ -103,16 +116,40 @@ export default function DataTable(props) {
 			<table>
 				<tbody>
 					<tr>
-						<th>FIPS Code</th>
-						<td>{results.fips}</td>
+						<th>Risk Level</th>
+						<td>{dataRiskLevels.overall}</td>
 					</tr>
 					<tr>
-						<th>CDC Transmission Level</th>
-						<td>{results.cdcTransmissionLevel}</td>
+						<th>Total Cases</th>
+						<td>{dataActuals.cases}</td>
+					</tr>
+					<tr>
+						<th>Daily New Cases</th>
+						<td>{dataActuals.newCases}</td>
+					</tr>
+					<tr>
+						<th>Deaths</th>
+						<td>{dataActuals.deaths}</td>
+					</tr>
+					<tr>
+						<th>Daily New Deaths</th>
+						<td>{dataActuals.newDeaths}</td>
+					</tr>
+					<tr>
+						<th>Negative Tests</th>
+						<td>{dataActuals.negativeTests}</td>
+					</tr>
+					<tr>
+						<th>Positive Tests</th>
+						<td>{dataActuals.positiveTests}</td>
+					</tr>
+					<tr>
+						<th>Vaccines Administered</th>
+						<td>{dataActuals.vaccinesAdministered}</td>
 					</tr>
 					<tr>
 						<th>Last Update</th>
-						<td>{results.lastUpdatedDate}</td>
+						<td>{dataGeneral.lastUpdatedDate}</td>
 					</tr>
 				</tbody>
 			</table>
