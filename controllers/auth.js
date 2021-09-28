@@ -59,8 +59,8 @@ const auth = require('../middleware/auth.js');
 
               jwt.sign(
                 { id: user.id },/*payload*/
-                SECRET,/*To-Do Change secret and switch to env variable*/
-                { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                SECRET,
+                { expiresIn: 3600 },
                 (err, token) => {
                   if(err) throw err;
                   res.json({
