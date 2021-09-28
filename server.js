@@ -4,7 +4,6 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const path = require('path');
-
 const userController = require('./controllers/users.js');
 const symptomController = require('./controllers/symptoms.js');
 const authController = require('./controllers/auth.js');
