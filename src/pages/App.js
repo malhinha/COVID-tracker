@@ -8,6 +8,7 @@ import Header from '../components/header';
 export default function App(props) {
 	let token = window.localStorage.getItem('token');
 	let userId = window.localStorage.getItem('id');
+	let userState = window.localStorage.getItem('userState');
 
 	return (
 		<div className="Home">
@@ -19,7 +20,7 @@ export default function App(props) {
 			) : (
 				<>
 					<LogSymptoms userId={userId} token={token} />
-					<DataTable />
+					<DataTable userState={userState} />
 				</>
 			)}
 		</div>
