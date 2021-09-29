@@ -23,17 +23,19 @@ const Header = props => {
 	};
 
 	return (
-		<div>
+		<div className="header-bg">
 			{!window.localStorage.getItem('token') ? (
 				<div>
-					<h3>CoviTRKR</h3>
+					<div className="header-covid">CoviTRKR</div>
 				</div>
 			) : (
 				<div>
-					<h3>CoviTRKR</h3>
+					<div className="header-covid">CoviTRKR</div>
 					<p>Hello {window.localStorage.getItem('loggedInUser')}</p>
 					<div>
-						<button onClick={handleLogout}>logout</button>
+						<button className="btn reg-btn" onClick={handleLogout}>
+							Logout
+						</button>
 					</div>
 				</div>
 			)}

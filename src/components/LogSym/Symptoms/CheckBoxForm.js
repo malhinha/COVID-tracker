@@ -5,6 +5,7 @@ export default function CheckBoxForm(props) {
 		<>
 			<input
 				type="checkbox"
+				className="text-center log-gif-one"
 				id={props.name}
 				onChange={props.onChange}
 				name={props.name}
