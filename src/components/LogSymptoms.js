@@ -5,9 +5,19 @@ import YesNo from './LogSym/YesNo';
 import CheckBoxForm from './LogSym/Symptoms/CheckBoxForm';
 import LogHead from './LogSym/LogHead';
 import Button from './LogSym/Button';
+import Map from './Map';
 import symptomOptions from './LogSym/Symptoms/symptomOptions';
 
+const containerStyle = {
+	width: '400px',
+	height: '400px'
+};
+
+let coords = [];
+let google = window.google;
+
 export default function LogSympmtoms(props) {
+	const [findHelp, setFindHelp] = useState(false);
 	const [symptom, setSymptom] = useState({
 		smellOrTaste: false,
 		achesOrFatigue: false,
@@ -43,6 +53,10 @@ export default function LogSympmtoms(props) {
 
 	const handleCheckChange = e => {
 		setSymptom({ ...symptom, [e.target.name]: e.target.checked });
+	};
+
+	const onClick = () => {
+		setFindHelp(!findHelp);
 	};
 
 	const handleSubmit = async e => {
@@ -133,7 +147,13 @@ export default function LogSympmtoms(props) {
 			{/*Buttons 1 to submit the data, another to to clear it. Second button is prob unneeded */}
 			<Button id={'submit-btn'} type={'submit'} value={'Submit'} />
 			<Button id={'reset-btn'} type={'reset'} value={'Clear'} />
-			<Button id={'contact'} type={'button'} value={'Contact Doctor'} />
+			<Button
+				id={'contact'}
+				type={'button'}
+				value={'Locate Medical Assistance'}
+				onClick={onClick}
+			/>
+			{findHelp ? <Map /> : <></>}
 		</form>
 	);
 }
