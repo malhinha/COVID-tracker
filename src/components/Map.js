@@ -19,13 +19,14 @@ export default function Map(props) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey:
-			'https://maps.googleapis.com/maps/api/js?key=AIzaSyDgAfPKf6nbpB3IEAxPweU-5xiqnCdNS98&callback=initMap&libraries=places&v=weekly&channel=2',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyDgAfPKf6nbpB3IEAxPweU-5xiqnCdNS98',
 		libraries: 'places'
 	});
 
 	const [map, setMap] = useState({
 		center: { lat: -33.867, lng: 151.195 },
-		coordsResult: []
+		coordsResult: [],
+		name: ''
 	});
 	const [currentPosition, setCurrentPosition] = useState({ lat: '', lng: '' });
 
