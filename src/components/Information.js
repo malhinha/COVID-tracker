@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StateDropDown from '../components/statedropdown.js';
+import NumberWithCommas from '../components/NumberConvert.js';
+import SimpleDateDisplay from '../components/SimpleDateDisplay.js';
 
 export default function DataTable(props) {
 	// array of states values
@@ -121,35 +123,51 @@ export default function DataTable(props) {
 					</tr>
 					<tr>
 						<th>Total Cases</th>
-						<td>{dataActuals.cases}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.cases} />
+						</td>
 					</tr>
 					<tr>
 						<th>Daily New Cases</th>
-						<td>{dataActuals.newCases}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.newCases} />
+						</td>
 					</tr>
 					<tr>
 						<th>Deaths</th>
-						<td>{dataActuals.deaths}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.deaths} />
+						</td>
 					</tr>
 					<tr>
 						<th>Daily New Deaths</th>
-						<td>{dataActuals.newDeaths}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.newDeaths} />
+						</td>
 					</tr>
 					<tr>
 						<th>Negative Tests</th>
-						<td>{dataActuals.negativeTests}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.negativeTests} />
+						</td>
 					</tr>
 					<tr>
 						<th>Positive Tests</th>
-						<td>{dataActuals.positiveTests}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.positiveTests} />
+						</td>
 					</tr>
 					<tr>
 						<th>Vaccines Administered</th>
-						<td>{dataActuals.vaccinesAdministered}</td>
+						<td>
+							<NumberWithCommas number={dataActuals.vaccinesAdministered} />
+						</td>
 					</tr>
 					<tr>
 						<th>Last Update</th>
-						<td>{dataGeneral.lastUpdatedDate}</td>
+						<td>
+							<SimpleDateDisplay date={dataGeneral.lastUpdatedDate} />
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -3,21 +3,10 @@ const Symptom = require('../models/symptom.js');
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const SECRET = process.env.SECRET;
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth.js');
 
-
-//Seed route <---example for testing
-router.get('/seed', (req, res) => {
-  User.create({
-    username: "superman",
-    email: "superman@gmail.com",
-    password: "passwordtest",
-    zipCode: "05101",
-    doctorName: "doctortest",
-    providerLocation: "123 Main St"
-  })
-})
 //CREATE
   router.post('/', async(req, res) => { /*change route name*/
     try{
@@ -70,8 +59,8 @@ router.get('/seed', (req, res) => {
 
               jwt.sign(
                 { id: user.id },/*payload*/
-                'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
-                { expiresIn: 3600 },/*To-Do Change expiration to 3600 | used shorter time for testing*/
+                SECRET,
+                { expiresIn: 3600 },
                 (err, token) => {
                   if(err) throw err;
                   res.json({

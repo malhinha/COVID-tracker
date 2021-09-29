@@ -3,6 +3,7 @@ const Symptom = require('../models/symptom.js');
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const SECRET = process.env.SECRET;
 const jwt = require('jsonwebtoken');
 
 //CREATE
@@ -69,7 +70,7 @@ const jwt = require('jsonwebtoken');
                 .then(user => {
                   jwt.sign(
                     { id: user.id },/*payload*/
-                    'covid_myJwtSecret',/*To-Do Change secret and switch to env variable*/
+                    SECRET,
                     { expiresIn: 3600 },
                     (err, token) => {
                       if(err) throw err;

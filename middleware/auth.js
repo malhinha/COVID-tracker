@@ -1,5 +1,6 @@
 /*MIDDLEWARE FOR PRIVATE ROUTES*/
 require('dotenv').config();
+const SECRET = process.env.SECRET;
 const jwt = require('jsonwebtoken');
 
 function auth(req, res, next) {
@@ -12,7 +13,7 @@ function auth(req, res, next) {
 
   try{
     //Verify token
-    const decoded = jwt.verify(token, 'covid_myJwtSecret');
+    const decoded = jwt.verify(token, SECRET);
     //Add user from payload
     req.user = decoded;
     next();
