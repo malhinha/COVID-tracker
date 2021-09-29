@@ -140,204 +140,207 @@ const RegisterInformation = props => {
 	};
 
 	return (
-		<div>
-			<h3>Register your account</h3>
+		<div className="global-container card-body">
+			<div className="card signIn-form text-center col-lg-6 col-md-6 col-sm-6 col-xl-4">
+				<h3 className="reg-card-title">Register your account</h3>
 
-			<h3>Personal Information</h3>
-			<form onSubmit={handleSubmit}>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="firstName"
-						type="text"
-						placeholder="First Name"
-						value={personal.firstName}
-						onChange={handleChangePersonal}
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="lastName"
-						type="text"
-						placeholder="Last Name"
-						value={personal.lastName}
-						onChange={handleChangePersonal}
-						required
-					/>
-				</div>
+				<h4 className="reg-card-subtitle">Personal Information</h4>
+				<form onSubmit={handleSubmit}>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="firstName"
+							type="text"
+							placeholder="First Name"
+							value={personal.firstName}
+							onChange={handleChangePersonal}
+							required
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="lastName"
+							type="text"
+							placeholder="Last Name"
+							value={personal.lastName}
+							onChange={handleChangePersonal}
+							required
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="dateOfBirth"
-						type="date"
-						placeholder="Date of Birth"
-						value={personal.dateOfBirth}
-						onChange={handleChangePersonal}
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="city"
-						type="text"
-						placeholder="City"
-						value={location.city}
-						onChange={handleChangeLocation}
-						required
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="dateOfBirth"
+							type="date"
+							placeholder="Date of Birth"
+							value={personal.dateOfBirth}
+							onChange={handleChangePersonal}
+							required
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="city"
+							type="text"
+							placeholder="City"
+							value={location.city}
+							onChange={handleChangeLocation}
+							required
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<StateDropDown
-						onChange={handleChangeLocation}
-						array={statesArray}
-						value={location.state}
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="zipCode"
-						type="number"
-						placeholder="Zip Code"
-						value={personal.zipCode}
-						onChange={handleChangeLocation}
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="email"
-						type="text"
-						placeholder="Email"
-						value={personal.email}
-						onChange={handleChangePersonal}
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="password"
-						type="password"
-						placeholder="Password"
-						value={personal.password}
-						onChange={handleChangePersonal}
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="cpassword"
-						type="password"
-						placeholder="Confirm Password"
-						value={confirmPassword.cpassword}
-						onChange={handleChangeConfirmPassword}
-						required
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<StateDropDown
+							onChange={handleChangeLocation}
+							array={statesArray}
+							value={location.state}
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="zipCode"
+							type="number"
+							placeholder="Zip Code"
+							value={personal.zipCode}
+							onChange={handleChangeLocation}
+							required
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="email"
+							type="text"
+							placeholder="Email"
+							value={personal.email}
+							onChange={handleChangePersonal}
+							required
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="password"
+							type="password"
+							placeholder="Password"
+							value={personal.password}
+							onChange={handleChangePersonal}
+							required
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="cpassword"
+							type="password"
+							placeholder="Confirm Password"
+							value={confirmPassword.cpassword}
+							onChange={handleChangeConfirmPassword}
+							required
+						/>
+					</div>
 
-				<h3>Medical Information</h3>
+					<h4 className="reg-card-title">Medical Information</h4>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="firstName"
-						type="text"
-						placeholder="Physician First Name"
-						value={doctor.firstName}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="firstName"
+							type="text"
+							placeholder="Physician First Name"
+							value={doctor.firstName}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="lastName"
-						type="text"
-						placeholder="Physician Last Name"
-						value={doctor.lastName}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="lastName"
+							type="text"
+							placeholder="Physician Last Name"
+							value={doctor.lastName}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="doctorPhone"
-						type="number"
-						placeholder="Physician Phone Number"
-						value={doctor.doctorPhone}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="doctorPhone"
+							type="number"
+							placeholder="Physician Phone Number"
+							value={doctor.doctorPhone}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="email"
-						type="text"
-						placeholder="Physician email"
-						value={doctor.email}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="facilityName"
-						type="text"
-						placeholder="Facility Name"
-						value={doctor.facilityName}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="email"
+							type="text"
+							placeholder="Physician email"
+							value={doctor.email}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="facilityName"
+							type="text"
+							placeholder="Facility Name"
+							value={doctor.facilityName}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="facilityLocation"
-						type="text"
-						placeholder="Facility Location"
-						value={doctor.facilityLocation}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="facilityLocation"
+							type="text"
+							placeholder="Facility Location"
+							value={doctor.facilityLocation}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
 
-				<div className="input-container">
-					<i className="fa fa-wpforms icon"></i>
-					<input
-						className="input-field"
-						id="facilityNumber"
-						type="text"
-						placeholder="Facility Phone Number"
-						value={doctor.facilityNumber}
-						onChange={handleChangeDoctor}
-					/>
-				</div>
-				<input type="submit" value="SUBMIT" />
-			</form>
+					<div className="input-container">
+						<i className="fa fa-wpforms icon"></i>
+						<input
+							className="input-field"
+							id="facilityNumber"
+							type="text"
+							placeholder="Facility Phone Number"
+							value={doctor.facilityNumber}
+							onChange={handleChangeDoctor}
+						/>
+					</div>
+					<input type="submit" className="btn signIn-btn" value="SUBMIT" />
+				</form>
+				<h5 className="reg-card-subtitle">Thank you!</h5>
+			</div>
 		</div>
 	);
 };

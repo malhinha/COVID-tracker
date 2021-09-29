@@ -154,10 +154,16 @@ export default function LogSympmtoms(props) {
 			)}
 			{showCard && (
 				<div>
-					<h3>Submission complete.</h3>
-					<p>Thank you. Your information has been saved into the tracker.</p>
+					<h3 className="reg-card-title">Submission complete.</h3>
+					<div className="signIn-form">
+						Thank you. Your information has been saved into the tracker.
+					</div>
 					<Link to="/">
-						<button type="button" onClick={handleEditform}>
+						<button
+							type="button"
+							className="btn signIn-btn"
+							onClick={handleEditform}
+						>
 							Log Symptoms Again
 						</button>
 					</Link>
