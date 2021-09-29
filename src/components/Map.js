@@ -15,19 +15,18 @@ const containerStyle = {
 
 let coords = [];
 let google = window.google;
-export default function Doc(props) {
+export default function Map(props) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey:
-			'https://maps.googleapis.com/maps/api/js?key=AIzaSyDgAfPKf6nbpB3IEAxPweU-5xiqnCdNS98&callback=initMap&libraries=places&v=weekly&channel=2',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyDgAfPKf6nbpB3IEAxPweU-5xiqnCdNS98',
 		libraries: 'places'
 	});
 
 	const [map, setMap] = useState({
 		center: { lat: -33.867, lng: 151.195 },
 		coordsResult: [],
-		name: '',
-		address: ''
+		name: ''
 	});
 	const [currentPosition, setCurrentPosition] = useState({ lat: '', lng: '' });
 
@@ -77,7 +76,6 @@ export default function Doc(props) {
 				key={results.name}
 				animation="BOUNCE"
 				position={results.geometry.location}
-				icon={icon}
 				clickable={true}
 				onClick={() => alert(results.name)}
 			/>
