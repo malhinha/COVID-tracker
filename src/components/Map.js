@@ -15,7 +15,7 @@ const containerStyle = {
 
 let coords = [];
 let google = window.google;
-export default function Doc(props) {
+export default function Map(props) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey:
@@ -25,9 +25,7 @@ export default function Doc(props) {
 
 	const [map, setMap] = useState({
 		center: { lat: -33.867, lng: 151.195 },
-		coordsResult: [],
-		name: '',
-		address: ''
+		coordsResult: []
 	});
 	const [currentPosition, setCurrentPosition] = useState({ lat: '', lng: '' });
 
@@ -77,7 +75,6 @@ export default function Doc(props) {
 				key={results.name}
 				animation="BOUNCE"
 				position={results.geometry.location}
-				icon={icon}
 				clickable={true}
 				onClick={() => alert(results.name)}
 			/>
