@@ -7,7 +7,6 @@ export default function StateDropDown(props) {
 				id="state"
 				value={props.value}
 				placeholder="State"
-				autoFocus={true}
 				onChange={props.onChange}
 				required
 			>
